@@ -49,3 +49,4 @@ alias ...='cd ../..'
 alias ~='cd ~'
 alias venv='source venv/bin/activate'
 
+HYPRSHOT_DIR="/home/rxeal/Pictures/Screenshots/"
