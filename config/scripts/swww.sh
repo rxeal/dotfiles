@@ -1,12 +1,12 @@
 #!/bin/bash
 
-WALLPAPER_DIR="/home/rxeal/dotfiles/config/assets/wallpapers"
+WALLPAPER_DIR="$HOME/dotfiles/config/assets/wallpapers"
 
 STATE_FILE="/tmp/current_wallpaper_index"
 TYPE_FILE="/tmp/current_wallpaper_type"
 FLAG_FILE="/tmp/wallpaper_cycle_flag"
 
-TYPES=("War" "Anime" "Nature" "AnimeGirl" "AnimeNature")
+TYPES=("Anime" "Nature" "AnimeGirl" "AnimeNature")
 
 swww query &> /dev/null
 if [ $? -ne 0 ]; then

@@ -73,8 +73,8 @@
     "format": "⛰️{}",
     "rotate": 0,
     "exec": "echo ; echo ⛰️ switch wallpaper",
-    "on-click": "/home/rxeal/dotfiles/config/scripts/swww.sh",
-    "on-click-right": "/home/rxeal/dotfiles/config/scripts/swww.sh switch",
+    "on-click": "~/dotfiles/config/scripts/swww.sh",
+    "on-click-right": "~/dotfiles/config/scripts/swww.sh switch",
     "interval": 86400,
     "tooltip": true,
   },
@@ -90,7 +90,7 @@
     "format": "🚀",
     "tooltip": true,
     "tooltip-format": "🚀 Update system",
-    "on-click": "kitty bash /home/rxeal/dotfiles/config/scripts/update.sh",
+    "on-click": "kitty bash ~/dotfiles/config/scripts/update.sh",
   },
 
   "cpu": {
