@@ -32,7 +32,7 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-export JAVA_HOME=/opt/jdk-17.0.13+11
+export JAVA_HOME=/opt/jdk-17.0.16+8
 export PATH=$JAVA_HOME/bin:$PATH
 
 export ANDROID_STUDIO_HOME=/opt/android-studio
@@ -61,3 +61,6 @@ alias venv='source venv/bin/activate'
 
 HYPRSHOT_DIR="/home/rxeal/Pictures/Screenshots/"
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
