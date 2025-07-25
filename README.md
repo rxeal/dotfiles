@@ -1,6 +1,6 @@
 # 🚀 Arch Linux Dotfiles
 
-A curated collection of configuration files for a modern Arch Linux desktop environment featuring Hyprland, Waybar, and beautiful aesthetics.
+This repository contains my personal dotfiles for Neovim, Kitty, Zsh, Waybar, Wofi, and Hyprland.
 
 ## ✨ Features
 
@@ -63,7 +63,7 @@ sudo pacman -S ttf-fira-code ttf-font-awesome
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/yourusername/dotfiles-arch.git ~/dotfiles
+   git clone https://github.com/rxeal/dotfiles.git
    cd ~/dotfiles
    ```
 
