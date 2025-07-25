@@ -13,9 +13,15 @@
     "custom/r_end",
     "custom/padd",
     "custom/l_end",
-    "custom/wallchange",
+    "memory",
     "custom/space",
-    "custom/screenshot",
+    "cpu",
+    "custom/space",
+    "disk",
+    "custom/r_end",
+    "custom/padd",
+    "custom/l_end",
+    "hyprland/workspaces",
     "custom/r_end",
     "custom/padd",
   ],
@@ -29,25 +35,27 @@
   "modules-right": [
     "custom/padd",
     "custom/l_end",
+    "custom/wallchange",
+    "custom/space",
+    "custom/screenshot",
+    "custom/space",
+    "custom/update",
+    "custom/r_end",
+    "custom/padd",
+    "custom/l_end",
     "battery",
     "custom/space",
     "clock",
-    "custom/space",
+    "custom/r_end",
+    "custom/padd",
+    "custom/l_end",
     "backlight",
+    "custom/space",
+    "pulseaudio",
     "custom/space",
     "bluetooth",
     "custom/space",
     "network",
-    "custom/space",
-    "pulseaudio",
-    "custom/r_end",
-    "custom/padd",
-    "custom/l_end",
-    "custom/lockscreen",
-    "custom/space",
-    "custom/sleep",
-    "custom/space",
-    "custom/restart",
     "custom/space",
     "custom/power",
     "custom/r_end",
@@ -55,71 +63,62 @@
   ],
 
   "custom/arch": {
-    "format": "",
-    "tooltip": false,
+    "format": " ",
+    "tooltip": true,
+    "tooltip-format": "Open Arch Wiki",
     "on-click": "pkill wofi || wofi -s ~/.config/wofi/menu.css",
-  },
-
-  "custom/lockscreen": {
-    "format": "🔒{}",
-    "rotate": 0,
-    "exec": "echo ; echo 🔒 lockscreen",
-    "interval": 86400,
-    "on-click": "/home/rxeal/dotfiles/scripts/power.sh lock",
-    "tooltip": true,
-  },
-
-  "custom/sleep": {
-    "format": "💤{}",
-    "rotate": 0,
-    "exec": "echo ; echo 💤 sleep",
-    "interval": 86400,
-    "on-click": "/home/rxeal/dotfiles/scripts/power.sh suspend",
-    "tooltip": true,
-  },
-
-  "custom/restart": {
-    "format": "🌀{}",
-    "rotate": 0,
-    "exec": "echo ; echo 🌀 restart",
-    "interval": 86400,
-    "on-click": "/home/rxeal/dotfiles/scripts/power.sh reboot",
-    "tooltip": true,
-  },
-
-  "custom/power": {
-    "format": "🌪️{}",
-    "rotate": 0,
-    "exec": "echo ; echo 🌪️ shutdown",
-    "interval": 86400,
-    "on-click": "/home/rxeal/dotfiles/scripts/power.sh shutdown",
-    "tooltip": true,
   },
 
   "custom/wallchange": {
     "format": "⛰️{}",
     "rotate": 0,
     "exec": "echo ; echo ⛰️ switch wallpaper",
-    "on-click": "/home/rxeal/dotfiles/scripts/swww.sh",
-    "on-click-right": "/home/rxeal/dotfiles/scripts/swww.sh switch",
+    "on-click": "/home/rxeal/dotfiles/config/scripts/swww.sh",
+    "on-click-right": "/home/rxeal/dotfiles/config/scripts/swww.sh switch",
     "interval": 86400,
     "tooltip": true,
   },
 
   "custom/screenshot": {
     "format": "📸",
-    "on-click": "hyprshot -m region",
-    "tooltip-format": "Take a screenshot",
+    "on-click": "~/.config/wofi/screenshotmenu",
+    "tooltip": true,
+    "tooltip-format": "📸 Take a screenshot",
   },
 
-  "bluetooth": {
-    "format": "<span color='#b4befe'></span> {status}",
-    "format-disabled": "", // an empty format will hide the module
-    "format-connected": "<span color='#b4befe'></span> {num_connections}",
-    "tooltip-format": "{device_enumerate}",
-    "tooltip-format-enumerate-connected": "{device_alias}   {device_address}",
-    "on-click": "blueman-manager",
+  "custom/update": {
+    "format": "🚀",
+    "tooltip": true,
+    "tooltip-format": "🚀 Update system",
+    "on-click": "kitty bash /home/rxeal/dotfiles/config/scripts/update.sh",
   },
+
+  "cpu": {
+    "format": "   {usage}% ",
+    "tooltip-format": "CPU Usage: {usage}%\nCores: {cores}",
+    "tooltip": true,
+    "interval": 1,
+  },
+
+  "memory": {
+    "format": "   {used}/{total} GB ({percentage}%)",
+    "tooltip-format": "Used: {used} GB\nTotal: {total} GB\nUsage: {percentage}%",
+    "tooltip": true,
+    "interval": 1,
+    "exec": "free -h | awk '/^Mem:/ {print $3 \" / \" $2 \" GB\", $3/$2*100}' | awk '{print $1, $2, $3}'",
+    "format-alt": "{used}/{total} GB ({percentage}%)",
+  },
+
+  "disk": {
+    "format": "   {percentage_used}%",
+    "tooltip-format": "Used: {used} GB\nTotal: {total} GB\nFree: {free} GB\nUsage: {percentage_used}%",
+    "tooltip": true,
+    "interval": 1,
+    "exec": "df -h --output=used,size,avail | awk 'NR==2 {print $1, $2, $3, $1/$2*100}'",
+    "format-alt": "{used}/{total} GB ({free} GB free, {percentage_used}%)",
+  },
+
+  "hyprland/workspaces": {},
 
   "wlr/taskbar": {
     "format": "{icon}",
@@ -136,10 +135,24 @@
     },
   },
 
-  "clock": {
-    "format": "<span color='#b4befe'> </span>{:%I:%M %p}",
+  "battery": {
+    "states": {
+      "good": 95,
+      "warning": 30,
+      "critical": 20,
+    },
+    "format": "{icon} {capacity}%",
     "rotate": 0,
-    "format-alt": "{:%R 󰃭 %d·%m·%y}",
+    "format-charging": "  {capacity}%",
+    "format-plugged": "  {capacity}%",
+    "format-alt": "{time} {icon}",
+    "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+  },
+
+  "clock": {
+    "format": "<span color='#b4befe'>   </span>{:%I:%M %p}",
+    "rotate": 0,
+    "format-alt": "{:%R 󰃭 %d·%m·%y}",
     "tooltip-format": "<span>{calendar}</span>",
     "calendar": {
       "mode": "month",
@@ -161,48 +174,22 @@
     },
   },
 
-  "battery": {
-    "states": {
-      "good": 95,
-      "warning": 30,
-      "critical": 20,
-    },
-    "format": "{icon} {capacity}%",
-    "rotate": 0,
-    "format-charging": " {capacity}%",
-    "format-plugged": " {capacity}%",
-    "format-alt": "{time} {icon}",
-    "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
-  },
-
   "backlight": {
     "device": "intel_backlight",
     "rotate": 0,
-    "format": "{icon} {percent}%",
+    "format": "{icon}  {percent}%",
     "format-icons": ["", "", "", "", "", "", "", "", ""],
     "on-scroll-up": "brightnessctl set 1%+",
     "on-scroll-down": "brightnessctl set 1%-",
     "min-length": 6,
   },
 
-  "network": {
-    "interface": "wlo1",
-    "format": "{ifname}",
-    "format-wifi": "<span color='#b4befe'> </span>{essid}",
-    "format-ethernet": "{ipaddr}/{cidr} ",
-    "format-disconnected": "<span color='#b4befe'>󰖪 </span>No Network",
-    "tooltip": false,
-    "on-click": "nm-connection-editor",
-  },
-
   "pulseaudio": {
-    "format": "{icon} {volume}",
+    "format": "{icon}   {volume}",
     "rotate": 0,
     "format-muted": "🔇",
-    "on-click": "pavucontrol -t 3",
-    "on-click-middle": "volumecontrol.sh -o m",
-    "on-scroll-up": "volumecontrol.sh -o i",
-    "on-scroll-down": "volumecontrol.sh -o d",
+    "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
+    "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%",
     "tooltip-format": "{icon} {desc} // {volume}%",
     "scroll-step": 5,
     "format-icons": {
@@ -216,7 +203,34 @@
     },
   },
 
-  // modules for padding //
+  "bluetooth": {
+    "format": "<span color='#b4befe'></span> {status}",
+    "format-disabled": "<span color='#b4befe'> Off</span>",
+    "format-connected": "<span color='#b4befe'></span> {device_alias}",
+    "tooltip-format": "{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}   {device_address}",
+    "on-click": "blueman-manager",
+  },
+
+  "network": {
+    "interface": "wlo1",
+    "format": "{ifname}",
+    "format-wifi": "<span color='#b4befe'>    </span>{essid}",
+    "format-ethernet": "{ipaddr}/{cidr} ",
+    "format-disconnected": "<span color='#b4befe'>󰖪 </span>No Network",
+    "tooltip-format": "{status}  // {ip}",
+    "tooltip": true,
+    "on-click": "nm-connection-editor",
+  },
+
+  "custom/power": {
+    "format": " {}",
+    "rotate": 0,
+    "exec": "echo ; echo 🌪️ shutdown",
+    "interval": 86400,
+    "on-click": "~/.config/wofi/powermenu",
+    "tooltip": true,
+  },
 
   "custom/l_end": {
     "format": " ",

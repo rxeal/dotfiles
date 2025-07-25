@@ -1,13 +1,12 @@
 * {
-  font-family: "Fira Code", "Symbols Nerd Font Mono";
+  font-family: "JetBrainsMono";
   color: #cdd6f4;
   font-weight: bold;
   font-size: 14px;
 }
 
 window {
-  border: 2px solid #cdd6f4;
-  background: #11111b;
+  background: rgba(12, 0, 20, 0.4);
   border-radius: 15px;
 }
 
@@ -17,7 +16,7 @@ window {
   padding: 1em;
   border: none;
   font-weight: bold;
-  background: #1e2030;
+  background: #11111b;
   color: #c4d3da;
   border-radius: 15px;
 }
@@ -42,18 +41,24 @@ window {
 
 #text {
   margin-left: 0.5em;
-  color: #cdd6f4;
+  color: #ffffff;
 }
 
 #text:selected {
-  color: #16161e;
+  color: #ffffff;
 }
 
 #entry {
+  padding: 0.5em 1em;
   margin-top: 0.5em;
   border-radius: 15px;
 }
 
 #entry:selected {
-  background: linear-gradient(90deg, #90cdfa 0%, #b69bf1 80%);
+  background: linear-gradient(
+    90deg,
+    rgba(205, 214, 244, 0.3),
+    rgba(205, 214, 244, 0.6)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.5);
 }

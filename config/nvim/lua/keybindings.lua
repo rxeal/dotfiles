@@ -24,3 +24,6 @@ vim.keymap.set("n", "<S-k>", "vkk")                                    -- Start 
 vim.keymap.set("n", "<S-h>", "vh")                                     -- Start selection and extend left
 -- Start selection and extend right with Shift + l
 vim.keymap.set("n", "<S-l>", "vl")                                     -- Start selection and extend right
+
+-- Keybinding for selecting everything in the buffer
+vim.keymap.set("n", "<C-a>", "ggVG", { noremap = true, silent = true })
